@@ -2,7 +2,8 @@ import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy import stats
+from scipy
+import stats
 import os
 
 match_data = pd.read_csv("/kaggle/input/ipldata/matches.csv")
@@ -12,47 +13,46 @@ len(match_data)
 match_data.head()
 
 win_by_runs_data = match_data[match_data['win_by_runs'] > 0].win_by_runs
-print(f'Number of rows with matches won by margin = {len(win_by_runs_data)}')
+print(f 'Number of rows with matches won by margin = {len(win_by_runs_data)}')
 win_by_runs_data.head()
 
-#Finding the Arithmetic mean of the margin wins
-print(f'Arithmetic mean of margin wins = {win_by_runs_data.mean()}')
+# Finding the Arithmetic mean of the margin wins
+print(f 'Arithmetic mean of margin wins = {win_by_runs_data.mean()}')
 
-#Find the median
-print(f'Median = {win_by_runs_data.median()}')
+# Find the median
+print(f 'Median = {win_by_runs_data.median()}')
 
-#Find the mode
-print(f'Mode = {win_by_runs_data.mode()}')
+# Find the mode
+print(f 'Mode = {win_by_runs_data.mode()}')
 
-#Find the range
+# Find the range
 print("Max margin = ", max(win_by_runs_data))
 print("Min margin = ", min(win_by_runs_data))
-print(f'Range of margin wins = {max(win_by_runs_data) - min(win_by_runs_data)}')
+print(f 'Range of margin wins = {max(win_by_runs_data) - min(win_by_runs_data)}')
 
-#Different quartiles
+# Different quartiles
 win_by_runs_25_perc = stats.scoreatpercentile(win_by_runs_data, 25)
 win_by_runs_75_perc = stats.scoreatpercentile(win_by_runs_data, 75)
 
 win_by_runs_iqr = stats.iqr(win_by_runs_data)
-print(f'First quartile i.e (25th percentile) = {win_by_runs_25_perc}')
-print(f'Second quartile i.e (50th percentile) = {win_by_runs_data.median()}')
-print(f'Third quartile i.e (75th percentile) = {win_by_runs_75_perc}')
-print(f'Inter Quartile Range = Q3 - Q1 = {win_by_runs_75_perc} - {win_by_runs_25_perc} = {win_by_runs_iqr}')
+print(f 'First quartile i.e (25th percentile) = {win_by_runs_25_perc}')
+print(f 'Second quartile i.e (50th percentile) = {win_by_runs_data.median()}')
+print(f 'Third quartile i.e (75th percentile) = {win_by_runs_75_perc}')
+print(f 'Inter Quartile Range = Q3 - Q1 = {win_by_runs_75_perc} - {win_by_runs_25_perc} = {win_by_runs_iqr}')
 
 win_by_runs_95_perc = stats.scoreatpercentile(win_by_runs_data, 95)
-print(f'95th percentile = {win_by_runs_95_perc}')
+print(f '95th percentile = {win_by_runs_95_perc}')
 
-#Mean absolute deviation
-print(f'Mean absolute deviation = {win_by_runs_data.mad()}')
+# Mean absolute deviation
+print(f 'Mean absolute deviation = {win_by_runs_data.mad()}')
 
 win_by_wickets_data = match_data[match_data.win_by_wickets > 0].win_by_wickets
 win_by_wickets_data.head()
 win_by_wickets_data.describe()
 
-#Box plot to show quartiles and range
+# Box plot to show quartiles and range
 plt.boxplot(win_by_runs_data)
 plt.xlabel("Margin win by runs", size = 10, color = 'black')
 plt.ylabel("Runs", size = 10, color = 'black')
 plt.title('Box plot of margin runs')
 plt.yticks(np.arange(0, 100, step = 10))
-
